@@ -1,0 +1,174 @@
+<div class="container mx-auto p-4 md:p-8">
+    <div class="mb-6 flex flex-col gap-4 md:gap-5">
+        <h1 class="text-2xl font-bold">Checkout</h1>
+        <nav class="flex items-center gap-1"><span class="text-sm font-medium">Information</span><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chevron-right text-gray-400 h-4 w-4">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg><span class="text-sm text-gray-400 pointer-events-none">Shipping Method</span><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chevron-right text-gray-400 h-4 w-4">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg><span class="text-sm text-gray-400 pointer-events-none">Payment</span></nav>
+    </div>
+    <div class="grid gap-8 md:grid-cols-2 items-start">
+        <div class="flex flex-col gap-6">
+            <div class="md:hidden">
+                <div data-state="closed" data-slot="collapsible"
+                    class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                    <button type="button" aria-controls="radix-«Rmnndb»" aria-expanded="false" data-state="closed"
+                        data-slot="collapsible-trigger"
+                        class="group flex w-full items-center justify-between p-4 text-left">
+                        <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-chevron-down h-5 w-5 group-data-[state=open]:hidden">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-chevron-up h-5 w-5 group-data-[state=closed]:hidden">
+                                <path d="m18 15-6-6-6 6"></path>
+                            </svg><span class="font-medium">Order Summary</span></div>
+                        <p class="font-semibold">$519.75<span class="ml-1 inline sr-only">USD</span></p>
+                    </button>
+                    <div data-state="closed" id="radix-«Rmnndb»" hidden="" data-slot="collapsible-content"
+                        class="p-6  pt-0 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+                        style=""></div>
+                </div>
+            </div><!--$--><!--/$-->
+            <form action="/checkout/information" method="POST" class="space-y-6 md:space-y-8">
+                <div
+                    class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                    <div class="flex flex-col space-y-1.5 p-6">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Contact</h3>
+                    </div>
+                    <div class="p-6 pt-0 space-y-1.5"><label
+                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="email">Email</label><input
+                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                            id="email" placeholder="" required="" aria-invalid="false" type="email" name="email" value="{{checkoutInfo.email}}"></div>
+                </div>
+                <div
+                    class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                    <div class="flex flex-col space-y-1.5 p-6">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Shipping Address</h3>
+                    </div>
+                    <div class="p-6 pt-0 space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="firstName">First Name</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="firstName" placeholder="" required="" aria-invalid="false" name="firstName" value="{{checkoutInfo.firstName}}">
+                            </div>
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="lastName">Last Name</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="lastName" placeholder="" required="" aria-invalid="false" name="lastName" value="{{checkoutInfo.lastName}}"></div>
+                        </div>
+                        <div class="space-y-1.5"><label
+                                class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                for="address1">Address</label><input
+                                class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                id="address1" placeholder="" required="" aria-invalid="false" name="address1" value="{{checkoutInfo.address1}}"></div>
+                        <div class="space-y-1.5"><label
+                                class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                for="address2">Apartment, suite, etc. (optional)</label><input
+                                class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                id="address2" placeholder="" aria-invalid="false" name="address2" value="{{checkoutInfo.address2}}"></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="city">City</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="city" placeholder="" required="" aria-invalid="false" name="city" value="{{checkoutInfo.city}}"></div>
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="state">State</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="state" placeholder="" required="" aria-invalid="false" name="state" value="{{checkoutInfo.state}}"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="zip">ZIP Code</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="zip" placeholder="12345" required="" aria-invalid="false" name="zip" value="{{checkoutInfo.zip}}"></div>
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="country">Country</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="country" placeholder="" required="" aria-invalid="false" name="country" value="{{checkoutInfo.country}}"></div>
+                        </div>
+                        <div class="space-y-1.5"><label
+                                class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                for="phone">Phone (optional)</label><input
+                                class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                id="phone" aria-invalid="false" type="tel" name="phone" value="{{checkoutInfo.phone}}"></div>
+                    </div>
+                </div><button
+                    class="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100 cursor-pointer"
+                    type="submit" aria-busy="false" aria-label="Continue to Shipping Method">Continue to Shipping
+                    Method</button>
+            </form>
+        </div>
+        <div class="hidden md:block">
+            <div
+                class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight">Order Summary</h3>
+                </div>
+                <div class="p-6 pt-0"><!--$-->
+                    <div class="space-y-4">
+                        {{#each cart}}
+                        <div class="flex items-center space-x-4">
+                            <img src="{{this.image_url}}" alt="{{this.name}}" class="rounded-md object-cover" width="80"
+                                height="80">
+
+                            <div class="flex-grow">
+                                <h3 class="font-semibold">{{this.name}}</h3>
+                                <div class="mt-1 text-sm text-gray-500">
+                                    <div>Price: ${{this.price}}</div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <p class="font-semibold">
+                                    ${{multiply this.price this.qty}} <span class="ml-1 inline">USD</span>
+                                </p>
+                                <div class="text-sm text-gray-500">Quality: {{this.qty}}</div>
+                            </div>
+                        </div>
+
+                        <div class="shrink-0 bg-neutral-200 dark:bg-neutral-800 h-[1px] w-full"></div>
+                        {{/each}}
+
+                        <div class="flex justify-between">
+                            <span>Taxes</span>
+                            <p>$0.00<span class="ml-1 inline">USD</span></p>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <p>${{formatCurrency total}}<span class="ml-1 inline">USD</span></p>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span>Shipping</span>
+                            <p>$0.00<span class="ml-1 inline">USD</span></p>
+                        </div>
+
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <p>${{formatCurrency total}}<span class="ml-1 inline">USD</span></p>
+                        </div>
+                    </div><!--/$-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

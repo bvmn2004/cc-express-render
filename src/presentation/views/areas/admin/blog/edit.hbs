@@ -1,0 +1,47 @@
+<h1 class="text-2xl font-bold mb-6">Edit Blog</h1>
+
+<form action="/admin/blogs/{{blog.id}}?_method=PUT" method="POST" class="space-y-4">
+    <div>
+        <label class="block mb-1 font-medium">Title</label>
+        <input type="text" name="title" value="{{blog.title}}" class="w-full border rounded px-3 py-2" required>
+    </div>
+
+    <div>
+        <label class="block mb-1 font-medium">Product</label>
+        <select name="product_id" class="w-full border rounded px-3 py-2" required>
+            <option value="">-- Select Product --</option>
+            {{#each products}}
+            <option value="{{this.id}}" {{#if (eq this.id ../blog.product_id)}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div>
+        <label class="block mb-1 font-medium">Content</label>
+        <textarea id="blog-content" name="content" class="w-full border rounded px-3 py-2" required>{{blog.content}}</textarea>
+    </div>
+
+    <div class="flex items-center justify-between">
+        <a href="/admin/blogs" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+            Back
+        </a>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer">
+            Update
+        </button>
+    </div>
+</form>
+
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('blog-content', {
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'insert', items: ['Image', 'Table'] },
+            { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+            { name: 'colors', items: ['TextColor', 'BGColor'] },
+            { name: 'tools', items: ['Maximize', 'Source'] }
+        ]
+    });
+</script>

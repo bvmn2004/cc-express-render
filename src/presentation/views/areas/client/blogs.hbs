@@ -1,0 +1,47 @@
+<section class="py-8 px-4 max-w-7xl mx-auto">
+  <div class="mb-12 text-center">
+    <p class="text-sm uppercase tracking-[0.3em] text-gray-400">The Blog</p>
+    <h1 class="text-4xl font-serif tracking-widest mt-2">Stories & Reviews</h1>
+    <p class="text-gray-500 mt-3 max-w-2xl mx-auto">Explore and review in detail the products available at Luka Store.</p>
+  </div>
+  {{#if blogs.length}}
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {{#each blogs}}
+    <article class="bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-neutral-200 dark:border-neutral-800 flex flex-col">
+      {{#if this.product_slug}}
+      <a href="/product/{{this.product_slug}}" class="relative w-full bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 p-8 flex items-center justify-center min-h-[280px] cursor-pointer">
+        <img 
+          src="{{#if this.product_image_url}}{{this.product_image_url}}{{else}}https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80{{/if}}" 
+          alt="{{this.product_name}}" 
+          class="max-h-[240px] w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+        />
+      </a>
+      {{else}}
+      <div class="relative w-full bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900 p-8 flex items-center justify-center min-h-[280px]">
+        <img 
+          src="{{#if this.product_image_url}}{{this.product_image_url}}{{else}}https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80{{/if}}" 
+          alt="{{this.product_name}}" 
+          class="max-h-[240px] w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+        />
+      </div>
+      {{/if}}
+      <div class="p-6 flex flex-col gap-3 flex-grow">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-medium tracking-wide text-blue-600 dark:text-blue-400 uppercase">{{this.product_name}}</span>
+        </div>
+        <a href="/blogs/{{this.id}}">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition line-clamp-2 cursor-pointer hover:underline">
+            {{this.title}}
+          </h3>
+        </a>
+        <p class="text-xs text-gray-400 dark:text-gray-500">{{this.created_at}}</p>
+      </div>
+    </article>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="text-center py-16">
+    <p class="text-gray-500 text-lg">No posts yet. Please come back later!</p>
+  </div>
+  {{/if}}
+</section>

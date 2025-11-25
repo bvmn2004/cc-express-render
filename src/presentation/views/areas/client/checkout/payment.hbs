@@ -1,0 +1,312 @@
+<div class="container mx-auto p-4 md:p-8">
+    <div class="mb-6 flex flex-col gap-4 md:gap-5">
+        <h1 class="text-2xl font-bold">Checkout</h1>
+        <nav class="flex items-center gap-1"><a
+                class="text-sm text-gray-400 hover:text-gray-300 underline underline-offset-2 cursor-pointer"
+                href="/checkout/information">Information</a><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chevron-right text-gray-400 h-4 w-4">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg><a class="text-sm text-gray-400 hover:text-gray-300 underline underline-offset-2 cursor-pointer"
+                href="/checkout/shipping">Shipping Method</a><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chevron-right text-gray-400 h-4 w-4">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg><span class="text-sm font-medium">Payment</span></nav>
+    </div>
+    <div class="grid gap-8 md:grid-cols-2 items-start">
+        <div class="flex flex-col gap-6">
+            <div class="md:hidden">
+                <div data-state="closed" data-slot="collapsible"
+                    class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                    <button type="button" aria-controls="radix-«Rmnndb»" aria-expanded="false" data-state="closed"
+                        data-slot="collapsible-trigger"
+                        class="group flex w-full items-center justify-between p-4 text-left">
+                        <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-chevron-down h-5 w-5 group-data-[state=open]:hidden">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-chevron-up h-5 w-5 group-data-[state=closed]:hidden">
+                                <path d="m18 15-6-6-6 6"></path>
+                            </svg><span class="font-medium">Order Summary</span></div>
+                        <p class="font-semibold">$519.75<span class="ml-1 inline sr-only">USD</span></p>
+                    </button>
+                    <div data-state="closed" id="radix-«Rmnndb»" hidden="" data-slot="collapsible-content"
+                        class="p-6  pt-0 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+                        style=""></div>
+                </div>
+            </div><!--$--><!--/$-->
+            <div class="space-y-6 md:space-y-8">
+                <div
+                    class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                    <div class="p-6 flex flex-col gap-4">
+                        <div class="flex gap-2">
+                            <div class="flex flex-grow">
+                                <div class="w-22 flex-shrink-0">
+                                    <p class="text-sm text-neutral-500">Contact</p>
+                                </div>
+                                <div class="text-sm">{{checkoutInfo.email}}</div>
+                            </div><a class="text-sm text-blue-600 hover:text-blue-700"
+                                href="/checkout/information">Edit</a>
+                        </div>
+                        <div data-orientation="horizontal" role="none"
+                            class="shrink-0 bg-neutral-200 dark:bg-neutral-800 h-[1px] w-full"></div>
+                        <div class="flex gap-2">
+                            <div class="flex flex-grow">
+                                <div class="w-22 flex-shrink-0">
+                                    <p class="text-sm text-neutral-500">Ship to</p>
+                                </div>
+                                <div class="text-sm">{{formattedAddress}}
+                                </div>
+                            </div><a class="text-sm text-blue-600 hover:text-blue-700"
+                                href="/checkout/information">Edit</a>
+                        </div>
+                        <div data-orientation="horizontal" role="none"
+                            class="shrink-0 bg-neutral-200 dark:bg-neutral-800 h-[1px] w-full"></div>
+                        <div class="flex gap-2">
+                            <div class="flex flex-grow">
+                                <div class="w-22 flex-shrink-0">
+                                    <p class="text-sm text-neutral-500">Shipping Method</p>
+                                </div>
+                                <div class="text-sm">
+                                    <div>{{shippingMethod.name}} - ${{formatCurrency shippingMethod.price}}<span
+                                                class="ml-1 inline">USD</span>
+                                    </div>
+                                    <p class="text-sm text-neutral-400">{{shippingMethod.name}}</p>
+                                </div>
+                            </div><a class="text-sm text-blue-600 hover:text-blue-700"
+                                href="/checkout/shipping">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <form action="/checkout/payment" method="POST" class="space-y-6 md:space-y-8">
+                    <div
+                        class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight">Payment Information</h3>
+                        </div>
+                        <div class="p-6 pt-0 space-y-6">
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="cardholderName">Cardholder Name</label><input
+                                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                    id="cardholderName" required="" aria-invalid="false" name="cardholderName"></div>
+                            <div class="space-y-1.5"><label
+                                    class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="cardNumber">Card Number</label>
+                                <div class="relative"><input
+                                        class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300 pr-12"
+                                        id="cardNumber" inputmode="numeric" required="" aria-invalid="false" value=""
+                                        name="cardNumber">
+                                    <div class="absolute right-2 top-1/2 -translate-y-1/2"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-credit-card w-6 h-6 opacity-50">
+                                            <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                                            <line x1="2" x2="22" y1="10" y2="10"></line>
+                                        </svg></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium leading-none" for="expirationMonth">Month</label>
+                                    <select name="expirationMonth" id="expirationMonth" required class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm">
+                                        <option value="">MM</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium leading-none" for="expirationYear">Year</label>
+                                    <select name="expirationYear" id="expirationYear" required class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm">
+                                        <option value="">YYYY</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                        <option value="2031">2031</option>
+                                        <option value="2032">2032</option>
+                                        <option value="2033">2033</option>
+                                        <option value="2034">2034</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1.5"><label
+                                        class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="securityCode">CVV</label><input
+                                        class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                        id="securityCode" maxlength="4" required="" inputmode="numeric"
+                                        aria-invalid="false" name="securityCode"></div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center space-x-2"><button type="button" role="checkbox"
+                                        aria-checked="true" data-state="checked" value="on" data-slot="checkbox"
+                                        class="peer border-neutral-200 dark:bg-neutral-200/30 data-[state=checked]:bg-neutral-900 data-[state=checked]:text-neutral-50 data-[state=checked]:border-neutral-900 focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 aria-invalid:ring-red-500/20 aria-invalid:border-red-500 size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:dark:bg-neutral-800/30 dark:data-[state=checked]:bg-neutral-50 dark:data-[state=checked]:text-neutral-900 dark:dark:data-[state=checked]:bg-neutral-50 dark:data-[state=checked]:border-neutral-50 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50 dark:aria-invalid:ring-red-900/20 dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900"
+                                        id="billingSameAsShipping"><span data-state="checked"
+                                            data-slot="checkbox-indicator"
+                                            class="flex items-center justify-center text-current transition-none"
+                                            style="pointer-events: none;"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" class="lucide lucide-check size-3.5">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg></span></button><input aria-hidden="true" tabindex="-1"
+                                        type="checkbox" value="on" checked="" name="billingSameAsShipping"
+                                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;"><label
+                                        class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="billingSameAsShipping">Billing address same as shipping</label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden">
+                        <div
+                            class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <h3 class="text-2xl font-semibold leading-none tracking-tight">Billing Address</h3>
+                            </div>
+                            <div class="p-6 pt-0 space-y-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.firstName">First Name</label><input
+                                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                            id="billingAddress.firstName" placeholder="" required=""
+                                            aria-invalid="false" value="Lê" name="billingAddress.firstName"></div>
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.lastName">Last Name</label><input
+                                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                            id="billingAddress.lastName" placeholder="" required="" aria-invalid="false"
+                                            value="Nghiêm" name="billingAddress.lastName"></div>
+                                </div>
+                                <div class="space-y-1.5"><label
+                                        class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="billingAddress.address1">Address</label><input
+                                        class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                        id="billingAddress.address1" placeholder="" required="" aria-invalid="false"
+                                        value="60 Nguyễn Thi , phường Hòa Cường Nam" name="billingAddress.address1">
+                                </div>
+                                <div class="space-y-1.5"><label
+                                        class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="billingAddress.address2">Apartment, suite, etc. (optional)</label><input
+                                        class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                        id="billingAddress.address2" placeholder="" aria-invalid="false"
+                                        name="billingAddress.address2"></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.city">City</label><input
+                                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                            id="billingAddress.city" placeholder="" required="" aria-invalid="false"
+                                            value="Đà Nẵng" name="billingAddress.city"></div>
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.state">State</label><input
+                                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                            id="billingAddress.state" placeholder="" required="" aria-invalid="false"
+                                            value="Hai Chau" name="billingAddress.state"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.zip">ZIP Code</label><input
+                                            class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                            id="billingAddress.zip" placeholder="12345" required="" aria-invalid="false"
+                                            value="50000" name="billingAddress.zip"></div>
+                                    <div class="space-y-1.5"><label
+                                            class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="billingAddress.country">Country</label><button type="button"
+                                            role="combobox" aria-controls="radix-«r2p»" aria-expanded="false"
+                                            aria-required="true" aria-autocomplete="none" dir="ltr" data-state="closed"
+                                            class="flex h-10 w-full items-center justify-between rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;&gt;span]:line-clamp-1 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-300"
+                                            id="billingAddress.country"><span style="pointer-events: none;">United
+                                                States</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
+                                                aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg></button><select aria-hidden="true" required="" tabindex="-1"
+                                            name="billingAddress.country"
+                                            style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;">
+                                            <option value="US" selected="">United States</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="UK">United Kingdom</option>
+                                        </select></div>
+                                </div>
+                                <div class="space-y-1.5"><label
+                                        class="block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="billingAddress.phone">Phone (optional)</label><input
+                                        class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 md:text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300"
+                                        id="billingAddress.phone" aria-invalid="false" type="tel" value="(081) 581-9975"
+                                        name="billingAddress.phone"></div>
+                            </div>
+                        </div>
+                    </div><button
+                        class="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                        type="submit" aria-label="Place Order">Place Order</button>
+                </form>
+            </div>
+        </div>
+        <div class="hidden md:block">
+            <div
+                class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight">Order Summary</h3>
+                </div>
+                <div class="p-6 pt-0"><!--$-->
+                    <div class="space-y-4">
+                        {{#each cart}}
+                        <div class="flex items-center space-x-4">
+                            <img src="{{this.image_url}}" alt="{{this.name}}" class="rounded-md object-cover" width="80" height="80">
+                            <div class="flex-grow">
+                                <h3 class="font-semibold">{{this.name}}</h3>
+                                <div class="mt-1 text-sm text-gray-500">
+                                    <div>Price: ${{this.price}}</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-semibold">
+                                    <p>${{multiply this.price this.qty}}<span class="ml-1 inline">USD</span></p>
+                                </div>
+                                <div class="text-sm text-gray-500">Qty: {{this.qty}}</div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 bg-neutral-200 dark:bg-neutral-800 h-[1px] w-full"></div>
+                        {{/each}}
+                        <div class="flex justify-between"><span>Taxes</span>
+                            <p>$0.00<span class="ml-1 inline">USD</span></p>
+                        </div>
+                        <div class="flex justify-between"><span>Subtotal</span>
+                            <p>${{formatCurrency subtotal}}<span class="ml-1 inline">USD</span></p>
+                        </div>
+                        <div class="flex justify-between"><span>Shipping</span>
+                            <p>${{formatCurrency shippingCost}}<span class="ml-1 inline">USD</span></p>
+                        </div>
+                        <div class="flex justify-between font-bold"><span>Total</span>
+                            <p>${{formatCurrency total}}<span class="ml-1 inline">USD</span></p>
+                        </div>
+                    </div><!--/$-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

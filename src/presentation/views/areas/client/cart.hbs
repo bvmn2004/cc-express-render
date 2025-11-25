@@ -1,0 +1,29 @@
+<div class="mx-auto max-w-screen-2xl px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6">Your Cart</h1>
+
+    {{#if items.length}}
+    <ul class="divide-y divide-neutral-200 dark:divide-neutral-700">
+        {{#each items}}
+        <li class="flex items-center justify-between py-4">
+            <div class="flex items-center gap-4">
+                <img src="{{this.image_url}}" alt="{{this.name}}" class="h-16 w-16 object-contain border rounded" />
+                <div>
+                    <p class="font-medium">{{this.name}}</p>
+                    <p class="text-sm text-neutral-500">${{this.price}}</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="font-medium">x {{this.quantity}}</span>
+                <span class="font-bold">${{multiply this.price this.quantity}}</span>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    <div class="mt-6 text-right">
+        <a href="/checkout/information"
+            class="rounded-full bg-blue-600 px-6 py-3 text-white font-medium hover:opacity-90">Checkout</a>
+    </div>
+    {{else}}
+    <p>Your cart is empty.</p>
+    {{/if}}
+</div>

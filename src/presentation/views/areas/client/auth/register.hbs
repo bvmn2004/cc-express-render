@@ -1,0 +1,23 @@
+{{#if error}}
+  <div class="auth-error">{{error}}</div>
+{{/if}}
+<div class="form-wrap">
+  <form method="POST" action="/auth/register" class="auth-form">
+    <div class="form-row">
+      <input class="form-input" type="text" name="full_name" placeholder="Full name" />
+    </div>
+    <div class="form-row">
+      <input class="form-input" type="email" name="email" required placeholder="Email" />
+    </div>
+    <div class="form-row">
+      <input class="form-input" type="password" name="password" required placeholder="Password" />
+    </div>
+    <div class="form-row">
+      <input class="form-input" type="password" name="confirm_password" required placeholder="Confirm password" />
+    </div>
+    <div class="form-row form-actions">
+      <button type="submit" class="btn-primary">Register</button>
+    </div>
+  </form>
+  <div class="auth-footer">Already have an account? <a href="/auth/login">Login</a></div>
+</div>

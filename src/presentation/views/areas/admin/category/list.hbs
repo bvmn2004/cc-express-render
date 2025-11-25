@@ -1,0 +1,33 @@
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Category List</h1>
+    <a href="/admin/categories/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        + New Category
+    </a>
+</div>
+
+<table class="w-full border border-gray-300 bg-white shadow rounded">
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="border px-4 py-2 text-left">ID</th>
+            <th class="border px-4 py-2 text-left">Name</th>
+            <th class="border px-4 py-2 text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each categories}}
+        <tr class="hover:bg-gray-50">
+            <td class="border px-4 py-2">{{this.id}}</td>
+            <td class="border px-4 py-2">{{this.name}}</td>
+            <td class="border px-4 py-2">
+                <a href="/admin/categories/{{this.id}}/edit"
+                    class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">
+                    Edit</a>
+                <form action="/admin/categories/{{this.id}}/delete" method="POST" class="inline-block ml-2">
+                    <button type="submit"
+                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 cursor-pointer">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

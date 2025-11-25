@@ -1,0 +1,103 @@
+{{!-- TODO: Add analytic charts --}}
+<style>
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 20px;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.stat-title {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.stat-trend {
+    font-size: 14px;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-trend.down {
+    color: #ef4444;
+}
+
+.stat-sub {
+    margin-top: 5px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.trend-badge {
+    float: right;
+    font-size: 13px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: #f3f4f6;
+}
+</style>
+
+<div class="dashboard-grid">
+
+    <!-- Total Revenue -->
+    <div class="stat-card">
+        <div class="trend-badge">↗ +12.5%</div>
+        <div class="stat-title">Total Revenue</div>
+
+        <div class="stat-value">${{stats.totalRevenue}}</div>
+
+        <div class="stat-trend">Trending up this month ↗</div>
+        <div class="stat-sub">Visitors for the last 6 months</div>
+    </div>
+
+    <!-- New Orders -->
+    <div class="stat-card">
+        <div class="trend-badge" style="color:#ef4444;">↘ -20%</div>
+        <div class="stat-title">New Orders</div>
+
+        
+        <div class="stat-value">{{stats.newOrders}}</div>
+
+        <div class="stat-trend down">Down this period ↘</div>
+        <div class="stat-sub">Orders need attention</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="trend-badge">↗ +8.4%</div>
+        <div class="stat-title">Active Products</div>
+
+        <div class="stat-value">{{stats.activeProducts}}</div>
+        <div class="stat-trend">Products stable ↗</div>
+        <div class="stat-sub">Active products in your system</div>
+    </div>
+
+    <!-- Categories -->
+    <div class="stat-card">
+        <div class="trend-badge">↗ +4.5%</div>
+        <div class="stat-title">Categories</div>
+
+       
+        <div class="stat-value">{{stats.categories}}</div>
+
+        <div class="stat-trend">Steady performance increase ↗</div>
+        <div class="stat-sub">Product categories available</div>
+    </div>
+
+</div>

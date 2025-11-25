@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <aside class="fixed top-0 left-0 w-64 h-screen bg-white shadow-md">
+        <div class="p-4 text-xl font-bold border-b">Admin Panel</div>
+        <nav class="p-4 space-y-2">
+            <a href="/admin" class="block px-3 py-2 rounded hover:bg-gray-200">Dashboard</a>
+            <a href="/admin/categories" class="block px-3 py-2 rounded hover:bg-gray-200">Categories</a>
+            <a href="/admin/products" class="block px-3 py-2 rounded hover:bg-gray-200">Products</a>
+            <a href="/admin/blogs" class="block px-3 py-2 rounded hover:bg-gray-200">Blogs</a>
+            <a href="/admin/users" class="block px-3 py-2 rounded hover:bg-gray-200">Users</a>
+            <a href="/admin/orders" class="block px-3 py-2 rounded hover:bg-gray-200">Orders</a>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="ml-64 flex flex-col h-screen">
+        <!-- Navbar -->
+        <header class="bg-white shadow p-4 flex justify-between items-center">
+            <span class="text-lg font-semibold">Admin Dashboard</span>
+            <a href="/" class="text-blue-500 hover:underline">Logout</a>
+        </header>
+
+        <!-- Content (scrollable) -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            {{{body}}}
+        </main>
+    </div>
+</body>
+
+</html>

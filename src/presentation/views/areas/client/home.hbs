@@ -1,0 +1,54 @@
+<section
+    class="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
+    {{#each (slice products 0 3)}}
+    <div class="{{#if (eq @index 0)}}md:col-span-4 md:row-span-2{{else}}md:col-span-2 md:row-span-1{{/if}}">
+        <a class="relative block aspect-square h-full w-full" href="/product/{{slug}}">
+            <div
+                class="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
+                <img alt="{{name}}" decoding="async" data-nimg="fill"
+                    class="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
+                    sizes="{{#if (eq @index 0)}}(min-width: 768px) 66vw, 100vw{{else}}(min-width: 768px) 33vw, 100vw{{/if}}"
+                    src="{{image_url}}"
+                    onerror="this.src='https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/m/image_1396_1.png'">
+                <div
+                    class="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label {{#if (eq @index 0)}}lg:px-20 lg:pb-[35%]{{/if}}">
+                    <div
+                        class="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
+                        <h3 class="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">{{name}}</h3>
+                        <p class="flex-none rounded-full bg-blue-600 p-2 text-white font-medium">${{price}}<span
+                                class="ml-1 inline hidden @[275px]/label:inline">USD</span></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+</section>
+
+<div class="w-full overflow-x-auto pb-6 pt-1">
+    <ul class="flex animate-carousel gap-4">
+        {{!-- {{#each (slice products 3)}} --}}
+        {{#each products}}
+
+        <li class="relative aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none md:w-1/3">
+            <a class="relative h-full w-full" href="/product/{{slug}}">
+                <div
+                    class="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
+                    <img alt="{{name}}" loading="lazy" decoding="async" data-nimg="fill"
+                        class="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
+                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw" src="{{image_url}}"
+                        onerror="this.src='https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/m/image_1396_1.png'">
+                    <div class="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
+                        <div
+                            class="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
+                            <h3 class="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">{{name}}</h3>
+                            <p class="flex-none rounded-full bg-blue-600 p-2 text-white">${{ price}}<span
+                                    class="ml-1 inline hidden @[275px]/label:inline">USD</span></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+</div>

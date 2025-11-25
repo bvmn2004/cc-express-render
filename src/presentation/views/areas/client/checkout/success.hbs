@@ -1,0 +1,57 @@
+<div class="container mx-auto p-4 md:p-8">
+    <div class="mb-6 flex flex-col gap-4 md:gap-5">
+        <h1 class="text-2xl font-bold">Order Confirmation</h1>
+    </div>
+    <div class="max-w-2xl mx-auto">
+        <div class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 p-6 mb-6">
+            <div class="text-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-green-500">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <h2 class="text-2xl font-bold mb-2">Thank you for your order!</h2>
+                <p class="text-gray-600">Your order has been successfully placed.</p>
+            </div>
+            <div class="border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Order Number:</span>
+                    <span class="font-semibold">#{{order.id}}</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Total Amount:</span>
+                    <span class="font-semibold">${{formatCurrency order.total_amount}} USD</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-600">Status:</span>
+                    <span class="font-semibold capitalize">{{order.status}}</span>
+                </div>
+            </div>
+        </div>
+        
+        {{#if order.items}}
+        <div class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Order Items</h3>
+            <div class="space-y-4">
+                {{#each order.items}}
+                <div class="flex items-center space-x-4">
+                    <img src="{{this.product_image}}" alt="{{this.product_name}}" class="rounded-md object-cover w-16 h-16">
+                    <div class="flex-grow">
+                        <h4 class="font-semibold">{{this.product_name}}</h4>
+                        <p class="text-sm text-gray-500">Quantity: {{this.quantity}}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold">${{formatCurrency this.unit_price}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="text-center">
+            <a href="/" class="inline-block rounded-full bg-blue-600 px-6 py-3 text-white font-medium hover:opacity-90">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>
