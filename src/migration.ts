@@ -4,10 +4,8 @@ import pkg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
-const { Client } = pkg;
 
-// Render luôn cần SSL, không phụ thuộc NODE_ENV
-const isRender = !!process.env.DATABASE_URL;
+const { Client } = pkg;
 
 const migrationsDir = path.join(
     process.cwd(),
@@ -17,14 +15,15 @@ const migrationsDir = path.join(
 );
 
 export async function runMigrations() {
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: isRender
-            ? { rejectUnauthorized: false } 
-            : false,
-    });
 
     console.log("Connecting to database for migration...");
+
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
 
     try {
         await client.connect();
@@ -35,36 +34,22 @@ export async function runMigrations() {
         }
 
         const files = fs.readdirSync(migrationsDir)
-            .filter(file => file.endsWith(".sql"))
-            .sort((a, b) => a.localeCompare(b));
-
-        if (files.length === 0) {
-            console.log("No migration files found.");
-            return;
-        }
+            .filter(f => f.endsWith(".sql"))
+            .sort();
 
         console.log(`Found ${files.length} migration files.`);
 
         for (const file of files) {
+            console.log(`Running migration ${file}...`);
             const filePath = path.join(migrationsDir, file);
             const sql = fs.readFileSync(filePath, "utf8");
-
-            console.log(`\nRunning migration ${file}...`);
-
-            try {
-                await client.query(sql);
-                console.log(`Completed: ${file}`);
-            } catch (err) {
-                console.error(`Error in migration ${file}:`);
-                throw err;
-            }
+            await client.query(sql);
+            console.log(`Completed: ${file}`);
         }
 
-        console.log("\n✅ All migrations completed successfully!");
-
+        console.log("✅ All migrations completed successfully!");
     } catch (err) {
-        console.error("❌ Migration failed!");
-        console.error(err instanceof Error ? err.message : String(err));
+        console.error("❌ Migration failed:", err.message);
         process.exit(1);
     } finally {
         await client.end();
