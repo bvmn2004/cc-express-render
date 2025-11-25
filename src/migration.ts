@@ -20,9 +20,7 @@ export async function runMigrations() {
 
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
+        ssl: { rejectUnauthorized: false }
     });
 
     try {
@@ -48,8 +46,11 @@ export async function runMigrations() {
         }
 
         console.log("✅ All migrations completed successfully!");
+
     } catch (err) {
-        console.error("❌ Migration failed:", err.message);
+        console.error("❌ Migration failed:");
+        if (err instanceof Error) console.error(err.message);
+        else console.error(String(err));
         process.exit(1);
     } finally {
         await client.end();
