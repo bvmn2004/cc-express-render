@@ -28,7 +28,11 @@ import blogClientRoutes from "./presentation/routes/client/blog.route";
 import adminBlogRoutes from "./presentation/routes/admin/blog.route";
 import adminOrderRoutes from "./presentation/routes/admin/order.route";
 
-import { isAuthenticatedSession, isAdminSession } from "./shared/middleware/auth.middleware";
+import {
+    isAuthenticatedSession,
+    isAdminSession
+} from "./shared/middleware/auth.middleware";
+
 import { runMigrations } from "./migration";
 
 dotenv.config();
@@ -36,13 +40,22 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* -------------------- HANDLEBARS FIXED PATH -------------------- */
+/* ----------------------------------------------------
+   FIX RENDER: CORRECT PATH FOR VIEWS & STATIC FILES
+---------------------------------------------------- */
+
+const ROOT_DIR = path.resolve(__dirname, "../src");
+
+// STATIC
+app.use(express.static(path.join(ROOT_DIR, "public")));
+
+// VIEW ENGINE
 app.engine(
     "hbs",
     engine({
         extname: ".hbs",
-        layoutsDir: path.join(__dirname, "presentation/views/layouts"),
-        partialsDir: path.join(__dirname, "presentation/views/partials"),
+        layoutsDir: path.join(ROOT_DIR, "presentation/views/layouts"),
+        partialsDir: path.join(ROOT_DIR, "presentation/views/partials"),
         defaultLayout: "default-layout",
         helpers: {
             eq: (a: any, b: any) => a === b,
@@ -64,10 +77,8 @@ app.engine(
     })
 );
 
-/* -------------------- STATIC & VIEW FIXED PATH -------------------- */
-app.use(express.static(path.join(__dirname, "../public")));
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "presentation/views"));
+app.set("views", path.join(ROOT_DIR, "presentation/views"));
 
 /* -------------------- BASE MIDDLEWARE -------------------- */
 app.use(methodOverride("_method"));
@@ -157,7 +168,7 @@ app.use("/admin/products", isAdminSession, adminProductRoutes);
 app.use("/admin/categories", isAdminSession, adminCategoryRoutes);
 app.use("/admin/orders", isAdminSession, adminOrderRoutes);
 
-/* -------------------- SERVER START WITH MIGRATIONS -------------------- */
+/* -------------------- SERVER + MIGRATIONS -------------------- */
 async function bootstrap() {
     try {
         await runMigrations();
