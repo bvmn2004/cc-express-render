@@ -40,22 +40,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* ----------------------------------------------------
-   FIX RENDER: CORRECT PATH FOR VIEWS & STATIC FILES
----------------------------------------------------- */
+/* -------------------- STATIC & VIEWS (RENDER FIX) -------------------- */
 
-const ROOT_DIR = path.resolve(__dirname, "../src");
+app.use(express.static(path.join(__dirname, "public")));
 
-// STATIC
-app.use(express.static(path.join(ROOT_DIR, "public")));
-
-// VIEW ENGINE
-app.engine(
-    "hbs",
+app.engine("hbs",
     engine({
         extname: ".hbs",
-        layoutsDir: path.join(ROOT_DIR, "presentation/views/layouts"),
-        partialsDir: path.join(ROOT_DIR, "presentation/views/partials"),
+        layoutsDir: path.join(__dirname, "presentation/views/layouts"),
+        partialsDir: path.join(__dirname, "presentation/views/partials"),
         defaultLayout: "default-layout",
         helpers: {
             eq: (a: any, b: any) => a === b,
@@ -78,7 +71,7 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
-app.set("views", path.join(ROOT_DIR, "presentation/views"));
+app.set("views", path.join(__dirname, "presentation/views"));
 
 /* -------------------- BASE MIDDLEWARE -------------------- */
 app.use(methodOverride("_method"));
