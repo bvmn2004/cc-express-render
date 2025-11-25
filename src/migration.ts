@@ -4,8 +4,10 @@ import pkg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
-const isProduction = process.env.NODE_ENV === "production";
 const { Client } = pkg;
+
+// Render luôn cần SSL, không phụ thuộc NODE_ENV
+const isRender = !!process.env.DATABASE_URL;
 
 const migrationsDir = path.join(
     process.cwd(),
@@ -17,15 +19,15 @@ const migrationsDir = path.join(
 export async function runMigrations() {
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
-        ssl: isProduction
-            ? { rejectUnauthorized: false }
+        ssl: isRender
+            ? { rejectUnauthorized: false } 
             : false,
     });
 
     console.log("Connecting to database for migration...");
 
     try {
-        await client.connect(); 
+        await client.connect();
 
         if (!fs.existsSync(migrationsDir)) {
             console.log("Migration directory not found.");
@@ -62,11 +64,7 @@ export async function runMigrations() {
 
     } catch (err) {
         console.error("❌ Migration failed!");
-        if (err instanceof Error) {
-            console.error(err.message);
-        } else {
-            console.error(String(err));
-        }
+        console.error(err instanceof Error ? err.message : String(err));
         process.exit(1);
     } finally {
         await client.end();
